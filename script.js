@@ -3,8 +3,8 @@ const operationHistory = [];
 
 function addToHistory(operation) {
   const newEntry = {};
-  entry.date = new Date();
-  entry.operation = operation;
+  newEntry.date = new Date();
+  newEntry.operation = operation;
   operationHistory.push(newEntry);
 }
 
