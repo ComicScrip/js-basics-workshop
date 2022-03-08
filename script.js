@@ -1,28 +1,58 @@
-const firstValue = parseInt(prompt('first value ?'), 10);
-const operator = prompt('operator ?');
-const secondValue = parseInt(prompt('second value ?'), 10);
+// DATA & FUNCTIONS
+const operationHistory = [];
 
-let result = null;
-
-switch (operator) {
-  case '+':
-    result = firstValue + secondValue;
-    break;
-  case '-':
-    result = firstValue - secondValue;
-    break;
-  case '*':
-    result = firstValue * secondValue;
-    break;
-  case '/':
-    result = firstValue / secondValue;
-    break;
-  default:
-    console.log('invalid operator');
+function addToHistory(operation) {
+  const newEntry = {};
+  entry.date = new Date();
+  entry.operation = operation;
+  operationHistory.push(newEntry);
 }
 
-if (typeof result === 'number' && !isNaN(result)) {
-  alert(`${firstValue} ${operator} ${secondValue} = ${result}`);
-} else {
-  alert('The operation could not be performed, please try again');
+function logHistory() {
+  for (let i = 0; i < operationHistory.length; i += 1) {
+    const entry = operationHistory[i];
+    console.log(`[${entry.date}] operation #${i} : ${entry.operation}`);
+  }
 }
+
+function computeResult(a, b, operator) {
+  if (operator === '+') return a + b;
+  if (operator === '-') return a - b;
+  if (operator === '*') return a * b;
+  if (operator === '/') return a / b;
+  console.warn('invalid operator');
+  return null;
+}
+
+function getValidNumber(message) {
+  let input;
+
+  do {
+    input = parseFloat(prompt(message));
+  } while (typeof input !== 'number' || isNaN(input));
+
+  return input;
+}
+
+function getOperator() {
+  let input;
+
+  do {
+    input = prompt('operator ?');
+  } while (!['+', '-', '*', '/'].includes(input));
+
+  return input;
+}
+
+// MAIN PROGRAM
+do {
+  const firstValue = getValidNumber('first value ?');
+  const operator = getOperator();
+  const secondValue = getValidNumber('second value ?');
+  const result = computeResult(firstValue, secondValue, operator);
+  const operationWithResult = `${firstValue} ${operator} ${secondValue} = ${result}`;
+  alert(operationWithResult);
+  addToHistory(operationWithResult);
+} while (confirm('Do you want to perform another operation ?'));
+
+logHistory();
