@@ -71,7 +71,7 @@ do {
   alert(completedOperation);
   // adding the completed operation in the hisotry
   addToHistory(operationHistory, completedOperation);
-} while (confirm('Do you want to perform another operation ?'));
+} while (confirm('Do you want to perform another operation ?')); // we repeat the program as long as the user clicks on "OK" in the confirm dialog
 
 // logging the operation hisotry to the console when the program ends
 logHistory(operationHistory);
