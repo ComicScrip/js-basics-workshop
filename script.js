@@ -1,5 +1,4 @@
 // FUNCTIONS
-
 function addToHistory(history, operation) {
   // creating a new empty object
   const newEntry = {};
@@ -32,46 +31,5 @@ function computeResult(firstNumber, secondNumber, operator) {
   return null;
 }
 
-function getValidNumber(message) {
-  let input;
-
-  // We ask the user to enter something until it's a valid number
-  do {
-    input = parseFloat(prompt(message));
-  } while (typeof input !== 'number' || isNaN(input));
-
-  return input;
-}
-
-function getOperator() {
-  // we define the list of valid operators
-  const allowedOperators = ['+', '-', '*', '/'];
-  let input;
-
-  // we ask the user to enter something until it is a valid operator
-  do {
-    input = prompt('operator ?');
-  } while (!allowedOperators.includes(input));
-
-  return input;
-}
-
 // MAIN PROGRAM
 const operationHistory = [];
-
-do {
-  // getting user inputs
-  const firstValue = getValidNumber('first value ?');
-  const operator = getOperator();
-  const secondValue = getValidNumber('second value ?');
-  // computing the result
-  const result = computeResult(firstValue, secondValue, operator);
-  // displaying the operation along with the result in a popup
-  const completedOperation = `${firstValue} ${operator} ${secondValue} = ${result}`;
-  alert(completedOperation);
-  // adding the completed operation in the hisotry
-  addToHistory(operationHistory, completedOperation);
-} while (confirm('Do you want to perform another operation ?')); // we repeat the program as long as the user clicks on "OK" in the confirm dialog
-
-// logging the operation hisotry to the console when the program ends
-logHistory(operationHistory);
