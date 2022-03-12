@@ -46,7 +46,5 @@ calculateBtn.addEventListener('click', function () {
   const secondValue = parseFloat(secondValueInput.value);
   const operator = operatorInput.value;
   const result = computeResult(firstValue, secondValue, operator);
-  const completedOperation = `${firstValue} ${operator} ${secondValue} = ${result}`;
-
-  resultDiv.innerHTML = completedOperation;
+  resultDiv.innerHTML = `${firstValue} ${operator} ${secondValue} = ${result}`;
 });
