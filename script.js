@@ -1,3 +1,10 @@
+// DOM
+const firstValueInput = document.getElementById('firstValueInput');
+const secondValueInput = document.getElementById('secondValueInput');
+const operatorInput = document.getElementById('operator');
+const calculateBtn = document.querySelector('#calculateBtn');
+const resultDiv = document.querySelector('#result');
+
 // FUNCTIONS
 function addToHistory(history, operation) {
   // creating a new empty object
@@ -24,7 +31,7 @@ function computeResult(firstNumber, secondNumber, operator) {
   // we return the result according to the type of operation to perform
   if (operator === '+') return firstNumber + secondNumber;
   if (operator === '-') return firstNumber - secondNumber;
-  if (operator === '*') return firstNumber * secondNumber;
+  if (operator === 'x') return firstNumber * secondNumber;
   if (operator === '/') return firstNumber / secondNumber;
   // if the operator is not a valid operator (+, -, *, /), we display a wrning in the console and return null
   console.warn('invalid operator');
@@ -33,3 +40,13 @@ function computeResult(firstNumber, secondNumber, operator) {
 
 // MAIN PROGRAM
 const operationHistory = [];
+
+calculateBtn.addEventListener('click', function () {
+  const firstValue = parseFloat(firstValueInput.value);
+  const secondValue = parseFloat(secondValueInput.value);
+  const operator = operatorInput.value;
+  const result = computeResult(firstValue, secondValue, operator);
+  const completedOperation = `${firstValue} ${operator} ${secondValue} = ${result}`;
+
+  resultDiv.innerHTML = completedOperation;
+});
